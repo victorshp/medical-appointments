@@ -2,6 +2,15 @@ from playwright.sync_api import Playwright, sync_playwright
 import time
 from datetime import datetime
 
+# Hospitals
+# >> Sta. Catarina
+# >> Rede D'Or
+
+# TODO env vars for credentials
+
+# TODO Sta. Catarina steps
+# 1. GET https://redesantacatarina.org.br/hospital/santacatarina-paulista/Paciente/agendamento-consultas-exames
+# 2. Click on agendamento de consultas and start process
 def is_date_until_last_day_of_next_month(days_list):
     for (day_to_check, month_to_check) in days_list: 
         month_mapping = {'jan': 1, 'feb': 2, 'mar': 3, 'apr': 4, 'may': 5, 'jun': 6, 'jul': 7, 'aug': 8, 'sep': 9, 'oct': 10, 'nov': 11, 'dec': 12}
@@ -25,33 +34,33 @@ def run(playwright: Playwright) -> None:
     page.wait_for_load_state('networkidle')
     print('Starting to log in...')
     time.sleep(2)
-    page.get_by_placeholder("E-mail ou cpf").fill("23994946875")
+    page.get_by_placeholder("E-mail ou cpf").fill("")
     page.get_by_placeholder("E-mail ou cpf").press("Tab")
-    page.get_by_placeholder("Senha").fill("eU^hTM62iJUdVFtg")
+    page.get_by_placeholder("Senha").fill("")
     page.get_by_role("button", name="Entre", exact=True).click()
 
     page.wait_for_load_state('networkidle')
     print('Choosing user...')
     time.sleep(1)
-    page.get_by_role("img", name="Avatar do usuário Eun Bin Byun").click()
+    page.get_by_role("img", name="").click()
 
     page.wait_for_load_state('networkidle')
     print('Choosing doctor...')
     time.sleep(1)
     page.get_by_placeholder("DIGITE A ESPECIALIDADE OU MÉ").click()
-    page.get_by_label("Digite a especialidade ou mé").fill("SUELLEN MAXIMIANO LOPES")
-    page.get_by_role("listbox").locator("#list-item-1").get_by_text("Suellen").click()
+    page.get_by_label("Digite a especialidade ou mé").fill(")
+    page.get_by_role("listbox").locator("#list-item-1").get_by_text("").click()
     page.locator("#select-forma-de-pagamento svg").click()
 
     page.wait_for_load_state('networkidle')
     print('Choosing health plan stuff...')
     time.sleep(1)
     page.get_by_text("PLANO DE SAÚDE", exact=True).click()
-    page.get_by_placeholder("DIGITE O NOME DO CONVÊNIO", exact=True).fill("SULAMERICA")
-    page.get_by_role("option").get_by_text("SULAMERICA").click()
+    page.get_by_placeholder("DIGITE O NOME DO CONVÊNIO", exact=True).fill("")
+    page.get_by_role("option").get_by_text("").click()
     page.get_by_placeholder("DIGITE O NOME DO PLANO", exact=True).click()
-    page.get_by_placeholder("DIGITE O NOME DO PLANO", exact=True).fill("515 ESPECIAL 100 EMPRESARIAL APARTAMENTO")
-    page.get_by_text("ESPECIAL 100 EMPRESARIAL APARTAMENTO").first.click()
+    page.get_by_placeholder("DIGITE O NOME DO PLANO", exact=True).fill("")
+    page.get_by_text("").first.click()
     page.get_by_role("button", name="PROSSEGUIR").click()
 
     page.wait_for_load_state('networkidle')
