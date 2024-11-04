@@ -6,8 +6,6 @@ from datetime import datetime
 # >> Sta. Catarina
 # >> Rede D'Or
 
-# TODO env vars for credentials
-
 # TODO Sta. Catarina steps
 # 1. GET https://redesantacatarina.org.br/hospital/santacatarina-paulista/Paciente/agendamento-consultas-exames
 # 2. Click on agendamento de consultas and start process
@@ -48,7 +46,7 @@ def run(playwright: Playwright) -> None:
     print('Choosing doctor...')
     time.sleep(1)
     page.get_by_placeholder("DIGITE A ESPECIALIDADE OU MÉ").click()
-    page.get_by_label("Digite a especialidade ou mé").fill(")
+    page.get_by_label("Digite a especialidade ou mé").fill("")
     page.get_by_role("listbox").locator("#list-item-1").get_by_text("").click()
     page.locator("#select-forma-de-pagamento svg").click()
 
